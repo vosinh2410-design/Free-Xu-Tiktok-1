@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Chuyển Xu TikTok</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #161823;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 40px auto;
+            background: #22212c;
+            border-radius: 20px;
+            box-shadow: 0 4px 24px #00000050;
+            padding: 30px;
+        }
+        h1 {
+            text-align: center;
+            color: #fe2c55;
+            margin-bottom: 20px;
+        }
+        .coin-pack {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        .pack {
+            background: #282c34;
+            border-radius: 10px;
+            width: 48%;
+            margin-bottom: 10px;
+            padding: 15px 0;
+            text-align: center;
+            cursor: pointer;
+            border: 2px solid #282c34;
+            transition: border 0.2s;
+        }
+        .pack.selected {
+            border: 2px solid #fe2c55;
+            background: #1a1b1f;
+        }
+        .pack span {
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .pay-btn {
+            width: 100%;
+            padding: 15px;
+            background: #fe2c55;
+            color: #fff;
+            font-size: 20px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+        .pay-btn:active {
+            background: #c9001b;
+        }
+        #result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            color: #00ff88;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chuyển Xu TikTok</h1>
+        <div class="coin-pack" id="coin-pack">
+            <div class="pack" data-xu="100"><span>100 Xu</span></div>
+            <div class="pack" data-xu="350"><span>350 Xu</span></div>
+            <div class="pack" data-xu="1000"><span>1000 Xu</span></div>
+            <div class="pack" data-xu="2000"><span>2000 Xu</span></div>
+            <div class="pack" data-xu="3000"><span>3000 Xu</span></div>
+            <div class="pack" data-xu="4000"><span>4000 Xu</span></div>
+            <div class="pack" data-xu="5000"><span>5000 Xu</span></div>
+        </div>
+        <button class="pay-btn" id="pay-btn">Thanh toán</button>
+        <div id="result"></div>
+    </div>
+    <script>
+        // Xử lý chọn gói xu
+        let selectedPack = null;
+        document.querySelectorAll(".pack").forEach(pack => {
+            pack.onclick = function() {
+                document.querySelectorAll('.pack').forEach(p=>p.classList.remove('selected'));
+                pack.classList.add('selected');
+                selectedPack = pack.getAttribute('data-xu');
+            }
+        });
+
+        // Xử lý thanh toán
+        document.getElementById('pay-btn').onclick = function() {
+            if (!selectedPack) {
+                document.getElementById('result').innerText = "Vui lòng chọn gói xu!";
+                return;
+            }
+            // Demo: chỉ hiển thị thông báo. Bạn có thể tích hợp thanh toán thật sau.
+            document.getElementById('result').innerText = 
+                `Bạn đã chọn mua ${selectedPack} Xu. (Phần thanh toán sẽ hiển thị ở đây)`;
+        }
+    </script>
+</body>
+</html>
